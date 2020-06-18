@@ -57,12 +57,12 @@ def main():
 
     t = time.time()
     pool = ThreadPool(8)
-    pool.map(run_cpu_bound_process, id_numbers)
+    list(tqdm(pool.map(run_cpu_bound_process, id_numbers), total=len(id_numbers)))
     t_cpu_thread = time.time() - t
 
     t = time.time()
     pool = ThreadPool(8)
-    pool.map(run_io_bound_process, id_numbers)
+    list(tqdm(pool.map(run_io_bound_process, id_numbers), total=len(id_numbers)))
     t_io_thread = time.time() - t
 
     # Comparing run times
